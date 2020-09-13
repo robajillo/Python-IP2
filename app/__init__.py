@@ -23,4 +23,3 @@ def create_app(config_name):
 
 
 
-from app import views
