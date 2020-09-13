@@ -67,12 +67,26 @@ def get_articles(article):
         articles_data = url.read()
         articles_response = json.loads(articles_data)
 
-        articles_outcome = None
+        articles_results = None
 
-        if articles_response['articles']:
-            articles_outcome_items = articles_response['articles']
-            articles_outcome = process_new_articles(articles_outcome_items)
-    return articles_outcome
+        if get_articles_response['articles']:
+            articles_results_list = get_articles_response['articles']
+            articles_results = process_articles(articles_results_list)
+    return articles_results
 
+def process_articles(articles_list):
+    articles_outcome = []
 
+    for one_article in articles_list:
+        source = one_article.get("source")
+        author = one_article.get("author")
+        description = one_article.get("description")
+        title = one_article.get("title")
+        url = one_article.get("url")
+        urlToImage = one_article.get("urlToImage")
+        publishedAt = one_article.get("publishedAt") 
+        article_object = Articles(source, author, title, description, url, urlToImage, publishedAt)
+        articles_results.append(article_object)
+    
+    return articles_results
     
