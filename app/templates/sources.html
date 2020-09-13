@@ -7,16 +7,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid" id="allsources" >
-    <div class="overlay">
-        <h2 class="text-center font-weight-bold headers" >General News</h2>
-        {{ macro.display_new_sources(general) }}
+<div class="container-fluid" >
+    
+        <h2 class="text-center" >General News</h2>
+        {{ macro.displaySourceList(general) }}
  
-        <h2 class="text-center font-weight-bold headers" > Entertainment News</h2>
-        {{ macro.display_new_sources(entertainment) }}
-        <h2 class="text-center font-weight-bold headers" > Sports news </h2>
-        {{ macro.display_new_sources(sports) }}
-    </div>
+        <h2 class="text-center" > Sports news </h2>
+        {{ macro.displaySourceList(sports) }}
+
+        <h2 class="text-center" > Entertainment News</h2>
+        {{ macro.displaySourceList(entertainment) }}
+    
 </div>
 
 {% endblock %}

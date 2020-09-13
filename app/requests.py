@@ -1,13 +1,13 @@
 import urllib.request,json
 from .models import Articles,Sources
-import os
+
 
 # Getting api key
 api_key = None
 # Getting the movie base url
 base_url = None
 #getting articles url
-# art_url = None
+
 
 def configure_request(app):
     global api_key,base_url
