@@ -5,8 +5,18 @@ from config import config_options
 bootstrap = Bootstrap()
 
 def create_app(config_name):
+    '''
+    Function that takes configuration setting key as an argument
     
-# Initializing application
-app = Flask(__name__)
+    Args:
+        config_name : name of the configuration to be used
+    '''
+
+    # Initializing application
+    app = Flask(__name__)
+    
+    # Creating the app configurations
+    app.config.from_object(config_options[config_name])
+
 
 from app import views
