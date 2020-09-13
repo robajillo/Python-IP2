@@ -7,12 +7,13 @@ api_key = None
 # Getting the movie base url
 base_url = None
 #getting articles url
-
+art_url = None
 
 def configure_request(app):
     global api_key,base_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['NEWS_API_BASE_URL']
+    art_url = app.config['NEWS_ARTICLES_APL_URL']
 
 def get_sources(category):
     '''
@@ -58,6 +59,20 @@ def process_sources(source_list):
 
     return source_results
 
+def get_articles(article):
+
+    articles_url = art_url.format(article,api_key)
+    # print(art_url)
+    with urllib.request.urlopen(articles_url) as url:
+        articles_data = url.read()
+        articles_response = json.loads(articles_data)
+
+        articles_outcome = None
+
+        if articles_response['articles']:
+            articles_outcome_items = articles_response['articles']
+            articles_outcome = process_new_articles(articles_outcome_items)
+    return articles_outcome
 
 
     
