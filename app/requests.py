@@ -10,7 +10,7 @@ base_url = None
 art_url = None
 
 def configure_request(app):
-    global api_key,base_url
+    global api_key,base_url,art_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['NEWS_API_BASE_URL']
     art_url = app.config['NEWS_ARTICLES_API_URL']
@@ -59,13 +59,13 @@ def process_sources(source_list):
 
     return source_results
 
-def get_articles(article):
+def get_articles(sources):
 
-    articles_url = art_url.format(article,api_key)
-    # print(art_url)
+    articles_url = art_url.format(sources,api_key)
+
     with urllib.request.urlopen(articles_url) as url:
         articles_data = url.read()
-        articles_response = json.loads(articles_data)
+        get_articles_response = json.loads(articles_data)
 
         articles_results = None
 
@@ -75,7 +75,7 @@ def get_articles(article):
     return articles_results
 
 def process_articles(articles_list):
-    articles_outcome = []
+    articles_results = []
 
     for one_article in articles_list:
         source = one_article.get("source")

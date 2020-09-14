@@ -1,4 +1,4 @@
-from ..requests import get_sources
+from ..requests import get_sources,get_articles
 from flask import render_template,redirect,request,url_for
 from . import main
 
@@ -19,5 +19,5 @@ def NewsArticles():
     View that would return news articles
      
     """
-    technology_articles = get_articles('technology')
-    return render_template('articles.html', tech =technology_articles)
+    cnn_news = get_articles('cnn')
+    return render_template('articles.html', cnn=cnn_news)

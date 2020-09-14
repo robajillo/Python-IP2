@@ -10,11 +10,39 @@
                     <p class="desc">
                         {{news.description}}
                     </p>
-                    <a href="/articles/{{news.id}}"><button class="btn btn-primary">Read Articles</button> </a>
+                    <a href="/Articles-News/{{news.id}}"><button class="btn btn-primary">Read Articles</button> </a>
                     <a href="{{news.url}}"><button class="btn btn-primary" id="visit">Visit {{news.name}}</button></a>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+{% endmacro %}
+
+{% macro displayArticlesList(articles_list) %}
+
+<div class="container-fluid">
+    <div class="card-columns">
+        {% for article in articles_list %}
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{article.title}}</h4>
+                </div>
+                <div class="card-body">
+                    <img src="{{article.urlToImage}}" alt="{{article.title }}" class="card-img">
+                    <hr>
+                    <p>
+                        {{article.description}}
+                    </p>
+                    
+                </div>
+                <div class="card-footer">
+                     <a href="{{article.url}}"><button class="btn btn-primary">Read More</button></a> 
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
 {% endmacro %}
