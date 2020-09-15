@@ -1,5 +1,20 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro %}
-{%block content%}
-{{macro.displayArticlesList(cnn)}}
+
+
+
+
+{% block content %}
+<div class="container-fluid" id="allsources">
+    <div class="overlay container-fluid">    
+        <h2 class="text-center headers">Technology Articles</h2>
+        {{macro.display_articles(tech)}}
+
+        <h2 class="text-center headers">Entertainment News Articles</h2>
+        {{macro.display_articles(entertainment)}}
+        <h2 class="text-center headers">Google Articles</h2>
+        {{macro.display_articles(google)}}
+
+    </div>
+</div>
 {% endblock %}

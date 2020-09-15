@@ -13,11 +13,44 @@ def HomePage():
 
     return render_template('sources.html',general=general_news,entertainment=entertainment_news,sports=sports_news )
 
+# @main.route('/articles/<int:id>')
+# def sources(id):
+
+#     '''
+#     View movie page function that returns the movie details page and its data
+#     '''
+#     article = get_source(id)
+    
+
+#     return render_template('articles.html',article = article)
+
+# @main.route('/News-Articles')
+# def NewsArticles():
+#     """
+#     View that would return news articles
+     
+#     """
+#     cnn_news = get_articles('cnn')
+#     return render_template('articles.html', cnn=cnn_news)
+
+# @main.route('/article/<int:id>')
+# def movie(id):
+
+#     '''
+#     View movie page function that returns the movie details page and its data
+#     '''
+#     article = get_article(id)
+#     # title = f'{article.title}'
+
+#     return render_template('articles.html',article = article)
+
 @main.route('/News-Articles')
 def NewsArticles():
     """
     View that would return news articles
      
     """
-    cnn_news = get_articles('cnn')
-    return render_template('articles.html', cnn=cnn_news)
+    entertainment_articles = get_articles('entertainment')
+    technology_articles = get_articles('technology')
+    google_articles = get_articles('google')
+    return render_template('articles.html',entertainment=entertainment_articles, tech =technology_articles,google=google_articles)

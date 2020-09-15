@@ -4,13 +4,13 @@
             {% for news in source_list %}
             <div class="card ">
                 <div class="card-header">
-                    <h4><a href="/articles/{{news.id}}">{{news.name}}</a></h4>
+                    <h4><a href="/News-Articles">{{news.name}}</a></h4>
                 </div>
                 <div class="card-body">
                     <p>
                         {{news.description}}
                     </p>
-                    <a href="{{news.url}}"><button class="btn btn-primary">Read Articles</button> </a>
+                    <a href="/News-Articles"><button class="btn btn-primary">Read Articles</button> </a>
                     <a href="{{news.url}}"><button class="btn btn-primary" id="visit">Visit {{news.name}}</button></a>
                 </div>
             </div>
@@ -19,22 +19,21 @@
     </div>
 {% endmacro %}
 
-{% macro displayArticlesList(articles_list) %}
-
+{% macro display_articles(articles_results) %}
 <div class="container-fluid">
     <div class="card-columns">
-        {% for article in articles_list %}
+        {% for article in articles_results %}
             <div class="card">
-                <div class="card-header">
+                <div class="card-header art">
                     <h4>{{article.title}}</h4>
                 </div>
                 <div class="card-body">
                     <img src="{{article.urlToImage}}" alt="{{article.title }}" class="card-img">
                     <hr>
-                    <p>
+                    <p class="desc">
                         {{article.description}}
                     </p>
-                    
+                    <p disabled>Posted: {{article.publishedAt }} By: {{article.author }} </p>
                 </div>
                 <div class="card-footer">
                      <a href="{{article.url}}"><button class="btn btn-primary">Read More</button></a> 

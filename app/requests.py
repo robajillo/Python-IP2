@@ -59,19 +59,41 @@ def process_sources(source_list):
 
     return source_results
 
-def get_articles(sources):
+# def get_source(id):
+#     get_article_url = art_url.format(id,api_key)
 
-    articles_url = art_url.format(sources,api_key)
+#     with urllib.request.urlopen(get_article_url) as url:
+#         article_data = url.read()
+#         article_response = json.loads(article_data)
 
+#         articles_object = None
+#         if article_response:
+#             id = article_response.get('id')
+#             title = article_response.get('title')
+#             author = article_response.get('author')
+#             description = article_response.get('description')
+#             url = article_response.get('url')
+#             urlToImage = article_response.get('urlToImage')
+#             publishedAt = article_response.get('publishedAt')
+
+#             articles_object = Articles(id,title,author,url,urlToImage,description,publishedAt)
+
+#     return articles_object
+
+
+def get_articles(article):
+
+    articles_url = art_url.format(article,api_key)
+    # print(art_url)
     with urllib.request.urlopen(articles_url) as url:
         articles_data = url.read()
-        get_articles_response = json.loads(articles_data)
+        articles_response = json.loads(articles_data)
 
         articles_results = None
 
-        if get_articles_response['articles']:
-            articles_results_list = get_articles_response['articles']
-            articles_results = process_articles(articles_results_list)
+        if articles_response['articles']:
+            articles_results_items = articles_response['articles']
+            articles_results = process_articles(articles_results_items)
     return articles_results
 
 def process_articles(articles_list):
@@ -85,8 +107,7 @@ def process_articles(articles_list):
         url = one_article.get("url")
         urlToImage = one_article.get("urlToImage")
         publishedAt = one_article.get("publishedAt") 
-        article_object = Articles(source, author, title, description, url, urlToImage, publishedAt)
-        articles_results.append(article_object)
+        new_article = Articles(source, author, title, description, url, urlToImage, publishedAt)
+        articles_results.append(new_article)
     
     return articles_results
-    
