@@ -30,7 +30,7 @@ To get the code..
   ```
 2. Move to the folder and install requirements
   ```bash
-  cd News_Bulletins
+  cd news
   pip install -r requirements.txt
   ```
 3. Exporting Configurations
@@ -55,7 +55,6 @@ Open the application on your browser `127.0.0.1:5000`.
 * [Heroku](https://heroku.com)
 
 
-x
 #### Contact Information 
 
 If you have any question or contributions, please email me at [rjillo@yahoo.com] or [rjillo259@gmail.com]
