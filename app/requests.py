@@ -10,10 +10,10 @@ base_url = None
 art_url = None
 
 def configure_request(app):
-    global api_key,base_url
+    global api_key,base_url,art_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['NEWS_API_BASE_URL']
-    art_url = app.config['NEWS_ARTICLES_APL_URL']
+    art_url = app.config['NEWS_ARTICLES_API_URL']
 
 def get_sources(category):
     '''
@@ -58,21 +58,26 @@ def process_sources(source_list):
         source_results.append(source_object)
 
     return source_results
+def get_source(id):
+    get_article_url = art_url.format(id,api_key)
 
-def get_articles(article):
+    with urllib.request.urlopen(get_article_url) as url:
+        article_data = url.read()
+        article_response = json.loads(article_data)
 
-    articles_url = art_url.format(article,api_key)
-    # print(art_url)
-    with urllib.request.urlopen(articles_url) as url:
-        articles_data = url.read()
-        articles_response = json.loads(articles_data)
+        articles_object = None
+        article_results = []
+        if article_response:
+          for article in article_response.get('articles'):
+            source = article.get('id')
+            source = article.get('source')
+            title = article.get('title')
+            author = article.get('author')
+            description = article.get('description')
+            url = article.get('url')
+            urlToImage = article.get('urlToImage')
+            publishedAt = article.get('publishedAt')
 
-        articles_outcome = None
-
-        if articles_response['articles']:
-            articles_outcome_items = articles_response['articles']
-            articles_outcome = process_new_articles(articles_outcome_items)
-    return articles_outcome
-
-
-    
+            articles_object = Articles(id,source,title,author,description,url,urlToImage,publishedAt)
+            article_results.append(articles_object)
+        return article_results

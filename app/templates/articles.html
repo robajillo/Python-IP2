@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+
+{% block content %}  
+<div class="container-fluid">
+    <div class="card-columns">
+        {% for article in article %}
+            <div class="card">
+                <div class="card-header art">
+                    <h4>{{article.title}}</h4>
+                </div>
+                <div class="card-body">
+                    <img src="{{article.urlToImage}}" alt="{{article.title }}" class="card-img">
+                    <hr>
+                    <p class="desc">
+                        {{article.description}}
+                    </p>
+                    <p disabled>Published on: {{article.publishedAt }} By: {{article.author}} </p>
+                </div>
+                <div class="card-footer">
+                     <a href="{{article.url}}"><button class="btn btn-primary">Read More</button></a> 
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
