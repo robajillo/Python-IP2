@@ -13,6 +13,11 @@ def HomePage():
 
     return render_template('sources.html',general=general_news,entertainment=entertainment_news,sports=sports_news )
 
+
+
+
+
+
 @main.route('/article/<id>')
 def article(id):
 
@@ -21,3 +26,5 @@ def article(id):
 
 
     return render_template('articles.html',article = article)
+
+
